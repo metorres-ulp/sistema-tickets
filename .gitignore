@@ -1,0 +1,26 @@
+# Sistema de Tickets - .gitignore
+
+# Uploaded files (keep directory structure but not actual files)
+/uploads/*
+!/uploads/.gitkeep
+!/uploads/.htaccess
+
+# PHP config overrides (local dev)
+/config/local.php
+
+# Logs
+*.log
+/logs/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Node (if used for tooling)
+node_modules/
