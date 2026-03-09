@@ -42,8 +42,10 @@ try {
 
         // Marcar como notificados
         if (!empty($rawTickets)) {
-            $ids = implode(',', array_column($rawTickets, 'id'));
-            $pdo->exec("UPDATE tickets SET notificado=1 WHERE id IN ({$ids})");
+            $ids          = array_column($rawTickets, 'id');
+            $placeholders = implode(',', array_fill(0, count($ids), '?'));
+            $stmtMark     = $pdo->prepare("UPDATE tickets SET notificado=1 WHERE id IN ({$placeholders})");
+            $stmtMark->execute($ids);
         }
     }
 

@@ -19,7 +19,15 @@ class Database {
             try {
                 self::$instance = new PDO($dsn, DB_USER, DB_PASS, $options);
             } catch (PDOException $e) {
-                die(json_encode(['error' => 'Error de conexión a la base de datos.']));
+                // Log the actual error; do not expose it to the user
+                error_log('Database connection error: ' . $e->getMessage());
+                $isApi = (str_contains($_SERVER['CONTENT_TYPE'] ?? '', 'json') ||
+                          str_contains($_SERVER['HTTP_ACCEPT'] ?? '', 'json'));
+                if ($isApi) {
+                    header('Content-Type: application/json');
+                    die(json_encode(['error' => 'Error de conexión a la base de datos.']));
+                }
+                die('<div style="font-family:sans-serif;padding:2rem;text-align:center"><h2>Error de conexión</h2><p>No se pudo conectar a la base de datos. Por favor contacta al administrador del sistema.</p></div>');
             }
         }
         return self::$instance;

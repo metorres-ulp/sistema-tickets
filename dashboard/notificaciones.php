@@ -13,6 +13,11 @@ $pdo       = db();
 
 // Marcar como leídas
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
+    if (!csrf_verify()) {
+        flash_set('error', 'Token de seguridad inválido.');
+        header('Location: /dashboard/notificaciones.php');
+        exit;
+    }
     if ($_POST['action'] === 'marcar_leidas') {
         $pdo->prepare("UPDATE notificaciones SET leida=1 WHERE usuario_id=?")->execute([$user['id']]);
         flash_set('success', 'Todas las notificaciones marcadas como leídas.');
@@ -50,6 +55,7 @@ include __DIR__ . '/../includes/header-dashboard.php';
     </h1>
     <?php if ($noLeidas): ?>
     <form method="POST">
+        <?= csrf_field() ?>
         <input type="hidden" name="action" value="marcar_leidas">
         <button class="btn btn-outline-secondary btn-sm">
             <i class="bi bi-check-all me-1"></i>Marcar todas como leídas
@@ -100,6 +106,7 @@ include __DIR__ . '/../includes/header-dashboard.php';
                 </div>
                 <?php if (!$n['leida']): ?>
                 <form method="POST" class="flex-shrink-0">
+                    <?= csrf_field() ?>
                     <input type="hidden" name="action" value="marcar_leida">
                     <input type="hidden" name="id" value="<?= $n['id'] ?>">
                     <button type="submit" class="btn btn-sm btn-outline-secondary" title="Marcar como leída">

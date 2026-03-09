@@ -5,7 +5,7 @@
 !/uploads/.gitkeep
 !/uploads/.htaccess
 
-# PHP config overrides (local dev)
+# PHP config overrides (local dev — contains DB credentials, never commit)
 /config/local.php
 
 # Logs

@@ -100,9 +100,10 @@ CREATE TABLE `usuarios` (
   CONSTRAINT `fk_usuarios_area` FOREIGN KEY (`area_id`) REFERENCES `areas` (`id`) ON DELETE SET NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Password: Admin1234! (bcrypt)
+-- Initial admin user (IMPORTANT: change the password immediately after first login)
+-- Default password: Admin1234!
 INSERT INTO `usuarios` (`area_id`, `nombre`, `apellido`, `email`, `password`, `rol`) VALUES
-(NULL, 'Administrador', 'Sistema', 'admin@ulp.edu.ar', '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', 'admin');
+(NULL, 'Administrador', 'Sistema', 'admin@ulp.edu.ar', '$2y$10$qmPJ/DuS9/6xCY01bW.Zt.P0KEjPEVzE/CwW37ddem4vzBPUQOvQS', 'admin');
 
 -- --------------------------------------------------------
 -- Tabla: tickets

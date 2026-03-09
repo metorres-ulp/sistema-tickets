@@ -70,7 +70,9 @@ Sistema web de gestión visual de proyectos (tipo Kanban) para el Área de Comun
 5. **Acceder** a la aplicación:
    - Formulario público: `https://tickets.ulp.edu.ar/nuevo-requerimiento.php`
    - Panel privado: `https://tickets.ulp.edu.ar/login.php`
-   - Credenciales iniciales: `admin@ulp.edu.ar` / `password` (**cambiar inmediatamente**)
+   - Credenciales iniciales: `admin@ulp.edu.ar` / `Admin1234!` (**cambiar inmediatamente**)
+
+> **Importante:** Después del primer login, cambia la contraseña del administrador desde el perfil de usuario.
 
 ## Estructura del proyecto
 

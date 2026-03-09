@@ -2,11 +2,13 @@
 // ============================================================
 // Configuración de la base de datos
 // ============================================================
-define('DB_HOST', 'localhost');
-define('DB_PORT', '3306');
-define('DB_NAME', 'sistema_tickets');
-define('DB_USER', 'root');
-define('DB_PASS', '');
+// NOTE: In production, override these values in config/local.php
+// and ensure that file is excluded from version control.
+define('DB_HOST', getenv('DB_HOST') ?: 'localhost');
+define('DB_PORT', getenv('DB_PORT') ?: '3306');
+define('DB_NAME', getenv('DB_NAME') ?: 'sistema_tickets');
+define('DB_USER', getenv('DB_USER') ?: 'root');
+define('DB_PASS', getenv('DB_PASS') ?: '');
 define('DB_CHARSET', 'utf8mb4');
 
 // ============================================================
@@ -91,6 +93,14 @@ define('PRIORIDADES_TICKET', [
 // Zona horaria
 date_default_timezone_set('America/Argentina/Buenos_Aires');
 
-// Manejo de errores (desactivar en producción)
-ini_set('display_errors', 1);
+// Manejo de errores — desactivar display en producción, solo logging
+$isProduction = (getenv('APP_ENV') === 'production');
+ini_set('display_errors', $isProduction ? '0' : '1');
+ini_set('log_errors', '1');
 error_reporting(E_ALL);
+
+// Cargar configuración local si existe (para sobreescribir DB creds en producción)
+$localConfig = __DIR__ . '/local.php';
+if (file_exists($localConfig)) {
+    require_once $localConfig;
+}

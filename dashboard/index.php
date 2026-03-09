@@ -98,7 +98,17 @@ include __DIR__ . '/../includes/header-dashboard.php';
 <div class="page-header d-flex justify-content-between align-items-start">
     <div>
         <h1><i class="bi bi-speedometer2 me-2 text-primary"></i>Dashboard</h1>
-        <p class="text-muted mb-0">Bienvenido/a, <strong><?= htmlspecialchars($user['nombre']) ?></strong> &mdash; <?= date('l, d \d\e F \d\e Y') ?></p>
+        <p class="text-muted mb-0">Bienvenido/a, <strong><?= htmlspecialchars($user['nombre']) ?></strong> &mdash;
+        <?php
+        $diasEs   = ['domingo','lunes','martes','miércoles','jueves','viernes','sábado'];
+        $mesesEs  = ['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];
+        $diaSemana = $diasEs[(int)date('w')];
+        $diaMes    = date('j');
+        $mes       = $mesesEs[(int)date('n') - 1];
+        $anio      = date('Y');
+        echo ucfirst($diaSemana) . ", {$diaMes} de {$mes} de {$anio}";
+        ?>
+        </p>
     </div>
     <?php if (is_admin_or_referente()): ?>
     <a href="<?= APP_URL ?>/dashboard/tickets.php" class="btn btn-primary btn-sm">

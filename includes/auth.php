@@ -9,10 +9,13 @@ require_once __DIR__ . '/../config/database.php';
 function session_start_secure(): void {
     if (session_status() === PHP_SESSION_NONE) {
         session_name(SESSION_NAME);
+        // In production, set 'secure' to true so cookies are only sent over HTTPS
+        $isSecure = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off')
+                    || (getenv('APP_ENV') === 'production');
         session_set_cookie_params([
             'lifetime' => SESSION_LIFETIME,
             'path'     => '/',
-            'secure'   => false,
+            'secure'   => $isSecure,
             'httponly' => true,
             'samesite' => 'Lax',
         ]);
