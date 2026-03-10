@@ -1,0 +1,25 @@
+<?php
+// ============================================================
+// config/local.php — Local/production overrides
+// ============================================================
+// Copy this file to local.php and fill in your values.
+// local.php is EXCLUDED from version control (.gitignore).
+// ============================================================
+
+// Database credentials
+// define('DB_HOST', 'localhost');
+// define('DB_PORT', '3306');
+// define('DB_NAME', 'sistema_tickets');
+// define('DB_USER', 'your_db_user');
+// define('DB_PASS', 'your_db_password');
+
+// Application URL
+// define('APP_URL', 'https://tickets.ulp.edu.ar');
+
+// Email settings
+// define('MAIL_FROM', 'noreply@ulp.edu.ar');
+// define('MAIL_FROM_NAME', 'Sistema de Tickets ULP');
+// define('MAIL_REPLY_TO', 'comunicacion@ulp.edu.ar');
+
+// Disable error display in production:
+// ini_set('display_errors', '0');
